@@ -33,7 +33,7 @@
 		<dependency.plugin.version>3.0.2</dependency.plugin.version>
 		<spotbugs.version>4.7.3</spotbugs.version>
 		<spotbugs.plugin.version>4.7.3.4</spotbugs.plugin.version>
-		<guava.plugin.version>31.1-jre</guava.plugin.version>
+		<guava.plugin.version>32.0.1-android</guava.plugin.version>
 		<jacoco.plugin.version>0.8.9</jacoco.plugin.version>
 		<jar.plugin.version>3.0.2</jar.plugin.version>
 		<jxr.plugin.version>2.5</jxr.plugin.version>
