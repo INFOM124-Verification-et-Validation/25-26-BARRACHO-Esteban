@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.board;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,9 @@ class OccupantTest {
      */
     @Test
     void noStartSquare() {
-        // TODO
+        assertThat(unit.hasSquare()).isFalse();
+        assertThatExceptionOfType(AssertionError.class)
+            .isThrownBy(() -> unit.getSquare());
     }
 
     /**
@@ -40,7 +43,11 @@ class OccupantTest {
      */
     @Test
     void testOccupy() {
-        // TODO
+        Square square = new BasicSquare();
+        unit.occupy(square);
+        assertThat(unit.hasSquare()).isTrue();
+        assertThat(unit.getSquare()).isEqualTo(square);
+        assertThat(square.getOccupants()).contains(unit);
     }
 
     /**
@@ -49,6 +56,13 @@ class OccupantTest {
      */
     @Test
     void testReoccupy() {
-        // TODO
+        Square first = new BasicSquare();
+        Square second = new BasicSquare();
+        unit.occupy(first);
+        assertThat(first.getOccupants()).contains(unit);
+        unit.occupy(second);
+        assertThat(unit.getSquare()).isEqualTo(second);
+        assertThat(second.getOccupants()).contains(unit);
+        assertThat(first.getOccupants()).doesNotContain(unit);
     }
 }
