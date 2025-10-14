@@ -46,10 +46,31 @@ on va tester les différents cas principal intérêt a testé
 - Multiple Clyde on the map
 - Multiple Pacman on the map
 - Clyde is on Pacman
-
+- Clyde does not have a square partition
 - Pacman is not on the board partition
 - Pacman at the edge of the board partition
 - Pacman does not have a square partition
 - Pacman goes from one edge of the map to the other
-- 
+
 ## 5. Select test cases
+
+#### Distance < 8:
+- T1 : Path free => Direction away from Pacman
+- T2 : Path blocked => Empty direction
+- T3 : Multiple moves => Direction away from Pacman
+#### Distance = 8:
+- T4 : Path free => Direction towards Pacman
+- T5 : Path blocked => Empty direction
+- T6 : Multiple moves => Direction towards Pacman
+#### Distance > 8:
+- T7 : Path free => Direction away from Pacman
+- T8 : Path blocked => Empty direction
+- T9 : Multiple moves => Direction away from Pacman
+#### Boundaries : (pas forcément empty direction, exception déclenchée)
+- T10 : Multiple clydes on the map => Empty direction
+- T11 : Multiple pacman on the map => Empty direction
+- T12 : Clyde is on Pacman => Empty direction
+- T13 : Pacman is not on the board => Empty direction
+- T14 : Pacman at the edge of the board => Empty direction
+- T15 : Pacman does not have a square => Empty direction
+- T16 : Pacman goes from one edge of the map to the other => Empty direction
