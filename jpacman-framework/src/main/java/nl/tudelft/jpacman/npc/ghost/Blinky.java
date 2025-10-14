@@ -59,6 +59,8 @@ public class Blinky extends Ghost {
      * @param spriteMap
      *            The sprites for this ghost.
      */
+    // TODO Blinky should speed up when there are a few pellets left, but he
+    // has no way to find out how many there are.
     public Blinky(Map<Direction, Sprite> spriteMap) {
         super(spriteMap, MOVE_INTERVAL, INTERVAL_VARIATION);
     }
@@ -79,25 +81,19 @@ public class Blinky extends Ghost {
     @Override
     public Optional<Direction> nextAiMove() {
         assert hasSquare();
-        long elapsed = (System.currentTimeMillis() - startMillis) % CYCLE_MS;
-        boolean scatter = elapsed < SCATTER_PERIOD_MS;
 
-        if (scatter) {
-            Optional<Direction> patrol = patrolTopRightHeuristic();
-            if (patrol.isPresent()) {
-                return patrol;
-            }.
-        }
-
+        // TODO Blinky should patrol his corner every once in a while
+        // TODO Implement his actual behaviour instead of simply chasing.
         Unit nearest = Navigation.findNearest(Player.class, getSquare());
-        if (nearest == null || !nearest.hasSquare()) {
+        if (nearest == null) {
             return Optional.empty();
         }
-
+        assert nearest.hasSquare();
         Square target = nearest.getSquare();
+
         List<Direction> path = Navigation.shortestPath(getSquare(), target, this);
         if (path != null && !path.isEmpty()) {
-            return Optional.of(path.get(0));
+            return Optional.ofNullable(path.get(0));
         }
         return Optional.empty();
     }
