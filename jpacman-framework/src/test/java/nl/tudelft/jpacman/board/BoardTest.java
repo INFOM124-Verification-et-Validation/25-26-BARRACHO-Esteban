@@ -14,9 +14,6 @@ import static org.mockito.Mockito.mock;
  */
 class BoardTest {
 
-    private static final int MAX_WIDTH = 2;
-    private static final int MAX_HEIGHT = 3;
-
     private final Square[][] grid = {
         { mock(Square.class), mock(Square.class), mock(Square.class) },
         { mock(Square.class), mock(Square.class), mock(Square.class) },
@@ -28,7 +25,7 @@ class BoardTest {
      */
     @Test
     void verifyWidth() {
-        assertThat(board.getWidth()).isEqualTo(MAX_WIDTH);
+        assertThat(board.getWidth()).isEqualTo(2);
     }
 
     /**
@@ -36,7 +33,7 @@ class BoardTest {
      */
     @Test
     void verifyHeight() {
-        assertThat(board.getHeight()).isEqualTo(MAX_HEIGHT);
+        assertThat(board.getHeight()).isEqualTo(3);
     }
 
     /**
@@ -51,6 +48,7 @@ class BoardTest {
         "0, 1"
     })
     void testSquareAt(int x, int y) {
-        assertThat(board.squareAt(x, y)).isSameAs(grid[x][y]);
+        Square expected = grid[x][y];
+        assertThat(board.squareAt(x, y)).isEqualTo(expected);
     }
 }
