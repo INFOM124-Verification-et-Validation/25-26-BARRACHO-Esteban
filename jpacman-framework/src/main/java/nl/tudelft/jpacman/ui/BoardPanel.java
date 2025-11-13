@@ -38,7 +38,7 @@ class BoardPanel extends JPanel {
     /**
      * The game to display.
      */
-    private final Game game;
+    private final transient Game game;
 
     /**
      * Creates a new board panel that will display the provided game.
@@ -63,7 +63,10 @@ class BoardPanel extends JPanel {
 
     @Override
     public void paint(Graphics graphics) {
-        assert graphics != null;
+        if (game == null || game.getLevel() == null) {
+            return;
+        }
+
         Board board = game.getLevel().getBoard();
         Dimension window = getSize();
 
